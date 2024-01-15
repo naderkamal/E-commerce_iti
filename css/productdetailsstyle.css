@@ -1,0 +1,146 @@
+body {
+  margin: 0;
+  text-transform: capitalize;
+  font-family: "Lato", sans-serif;
+  font-weight: 100;
+}
+
+#containerProduct {
+  padding-top: 100px;
+}
+#containerD {
+  width: 80%;
+  margin: auto;
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  padding: 60px 40px;
+}
+#imageSection {
+  width: 100%;
+  margin: auto;
+}
+#imageSection img {
+  width: 100%;
+  float: right;
+  border-radius: 10px;
+  box-shadow: 1px 2px 6px 2px rgb(219, 219, 219);
+}
+#imageSection img:hover {
+  box-shadow: 1px 0px 9px 1px rgb(3, 122, 122);
+}
+
+#productDetails {
+  width: 80%;
+  margin-left: 50px;
+  margin-top: 50px;
+}
+h1 {
+  font-size: 30px;
+  word-spacing: 3px;
+}
+h4 {
+  font-size: 20px;
+  font-weight: bold;
+  color: rgb(3, 122, 122);
+  letter-spacing: 1px;
+  word-spacing: 2px;
+}
+p,
+h3 {
+  font-size: 20px;
+  word-spacing: 3px;
+  line-height: 20px;
+}
+
+#button #buybutton {
+  padding: 10px 15px;
+  color: white;
+  background-color: rgb(3, 122, 122);
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 20px;
+}
+#button #buybutton:hover {
+  background-color: rgb(3, 94, 94);
+}
+#button #wishbutton {
+  float: right;
+  margin-right: 50px;
+  padding: 10px 15px;
+  color: white;
+  background-color: #eb2f06;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 20px;
+}
+#button #wishbutton:hover {
+  background-color: #cc2c08;
+}
+/* ----------------------------- MEDIA QUERY --------------------------- */
+
+@media (max-width: 900px) {
+  #containerD {
+    width: 60%;
+    margin: auto;
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+  #productDetails {
+    width: 100%;
+  }
+}
+
+@media (max-width: 650px) {
+  #containerD {
+    width: 80%;
+  }
+}
+/* Add your existing styles here */
+
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgb(0,0,0);
+  background-color: rgba(0,0,0,0.4);
+}
+
+.modal-content {
+  background-color: #fefefe;
+  margin: 15% auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%;
+  border-radius: 30px;
+}
+
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+
+.modal-content a {
+  color: #007BFF;
+  text-decoration: underline;
+}
+
+.modal-content a:hover {
+  color: #0056b3;
+}

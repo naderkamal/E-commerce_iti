@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/all.css">
+    <link rel="stylesheet" href="css/cart.css">
+    <link rel="stylesheet" href="css/homestyle.css">
+    <link href='https://fonts.googleapis.com/css?family=Cairo' rel='stylesheet'>
+    <title> All Orders </title>
+    <!-- favicon -->
+    <link rel="icon"
+        href="https://yt3.ggpht.com/a/AGF-l78km1YyNXmF0r3-0CycCA0HLA_i6zYn_8NZEg=s900-c-k-c0xffffffff-no-rj-mo"
+        type="image/gif" sizes="16x16">
+    <!-- EXTERNAL LINKS -->
+    <link rel="stylesheet" href="./css/header.css">
+    <script src="https://kit.fontawesome.com/4a3b1f73a2.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css"
+        integrity="sha512-5A8nwdMOWrSz20fDsjczgUidUBR8liPYU+WymTZP1lmY9G6Oc7HlZv156XqnsgNUzTyMefFTcsFH/tnJE/+xBg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- footter link -->
+    <link rel="stylesheet" href="css/footer.css">
+
+</head>
+
+<body>
+    <!-- header -->
+    <header>
+        <section>
+            <div id="container">
+
+                <div id="shopName"><a href="home.html"> <b>NADER</b>shop </a></div>
+
+                <div class="search">
+                    <input type='text' placeholder="ًًWhat Are You Looking For?" />
+                    <i class="fa fa-search" aria-hidden="true"></i>
+                </div>
+
+                <div id="user">
+                    <a href="./Cart.html"> <i class="fa fa-cart-arrow-down" aria-hidden="true"></i></i></a>
+                    <a href="../Validation Login and Sign-In/Login/Login.html">
+                        <button id="logInButton">Log In</button>
+                    </a>
+                    <button id="logOutButton">Logout</button>
+
+                </div>
+            </div>
+            <div>
+                <nav>
+                    <a href="./Product.html" id="addProductButton">Add Product</a>
+                    <a href="./home.html">Home</a>
+                    <a href="./Category.html" id="HomeCategory">AddCategory</a>
+                    <a href="SeeAllOrders.html" id="AllOrderPage">All Oorders</a>
+                    <a href="#">About Us</a>
+                </nav>
+            </div>
+
+        </section>
+    </header>
+
+    <!-- header -->
+
+
+
+
+    <!-- next section is appare when user add some items -->
+    <section id="cart">
+        <h2>All products in site</h2>
+        <ul id="cart-items"></ul>
+        <div id="cart-total"></div>
+    </section>
+    <!-- end of cart with items -->
+    <!-- next section is appare when cart is empty -->
+    <section id="contentCart">
+        <div class="emptyCartImg">
+            <h2>no products yet <span>Empty</span> </h2>
+            <br>
+            <a href="home.html">RETURN TO SHOP</a>
+        </div>
+    </section>
+    <!-- end of empty wishList section -->
+
+    <!-- footter start -->
+    <footer>
+        <div class="content">
+            <div class="left box">
+                <div class="upper">
+                    <div class="topic">About us</div>
+                    <p>Easy platform to use when you're online shopping for any type of products you’re looking for.
+                        Even if
+                        you’re just browsing, we assure you that you will find something you like in our catalog. Our
+                        clothing store
+                        provides you with over one million products and variations to choose from! You can fitch
+                    </p>
+                </div>
+            </div>
+            <div class="right box">
+                <div class="topic">Subscribe us</div>
+                <form action="#">
+                    <input type="text" placeholder="Enter email address">
+                    <input type="submit" name="" value="Send">
+                    <div class="media-icons">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="bottom">
+            <p>Copyright © 2023 <a href="#">Top Store</a> All rights reserved</p>
+        </div>
+    </footer>
+    <!-- footter end -->
+    <script src="js/SeeAllorders.js"></script>
+    <script type="module" src="js/homejs.js"></script>
+</body>
+
+</html>

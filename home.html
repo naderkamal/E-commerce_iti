@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title> Nader Shop | Home </title>
+    <link href="https://fonts.googleapis.com/css?family=Lato&display=swap" rel="stylesheet">
+    <link rel="icon"
+        href="https://yt3.ggpht.com/a/AGF-l78km1YyNXmF0r3-0CycCA0HLA_i6zYn_8NZEg=s900-c-k-c0xffffffff-no-rj-mo"
+        type="image/gif" sizes="16x16">
+    <link rel="stylesheet" href="./css/homestyle.css">
+    <!-- header link -->
+    <!-- favicon -->
+    <link rel="icon"
+        href="https://yt3.ggpht.com/a/AGF-l78km1YyNXmF0r3-0CycCA0HLA_i6zYn_8NZEg=s900-c-k-c0xffffffff-no-rj-mo"
+        type="image/gif" sizes="16x16">
+    <!-- EXTERNAL LINKS -->
+    <link rel="stylesheet" href="./css/header.css">
+    <script src="https://kit.fontawesome.com/4a3b1f73a2.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css"
+        integrity="sha512-5A8nwdMOWrSz20fDsjczgUidUBR8liPYU+WymTZP1lmY9G6Oc7HlZv156XqnsgNUzTyMefFTcsFH/tnJE/+xBg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- footter link -->
+    <link rel="stylesheet" href="css/footer.css">
+    <!-- slider link -->
+    <link rel="stylesheet" href="./css/slider.css" />
+</head>
+
+<body>
+    <!-- header start -->
+    <header>
+        <section>
+            <div id="container">
+
+                <div id="shopName"><a href="home.html"> <b>NADER</b>shop </a></div>
+
+                <div class="search">
+                    <input type='text' id="searchInput" placeholder="Search Products" oninput="performSearch()" />
+                    <div id="searchResults" class="search-results"></div>
+                </div>
+
+                <div id="user">
+                    <a href="./Wishlist.html" target="_blank"> <i class="fa fa-heart" aria-hidden="true"></i></a>
+                    <a href="./Cart.html" target="_blank"> <i class="fa fa-cart-arrow-down"
+                            aria-hidden="true"></i></i></a>
+
+                    <a href="../Validation Login and Sign-In/Login/Login.html" target="_blank">
+                        <button id="logInButton">Log In</button>
+                    </a>
+                    <button id="logOutButton">Logout</button>
+
+                </div>
+            </div>
+            <div>
+                <nav>
+                    <a href="./Product.html" id="addProductButton">Add Product</a>
+                    <a href="./home.html">Home</a>
+                    <a href="./Category.html" id="HomeCategory">AddCategory</a>
+                    <a href="SeeAllOrders.html" id="AllOrderPage">All Oorders</a>
+                    <a href="#">About Us</a>
+                </nav>
+            </div>
+
+        </section>
+    </header>
+    <!-- header end -->
+
+    <!-- slider start -->
+    <div class="container">
+        <div class="slider-wrapper">
+            <div class="image-list">
+                <img class="image-item" src="slider/slider3.jpg" alt="" />
+                <img class="image-item" src="slider/slider4.jpg" alt="" />
+                <img class="image-item" src="slider/slider1.jpg" alt="" />
+                <img class="image-item" src="slider/slider2.jpg" alt="" />
+                <img class="image-item" src="slider/slider8.jpg" alt="" />
+                <img class="image-item" src="slider/slider5.jpg" alt="" />
+                <img class="image-item" src="slider/slider7.jpg" alt="" />
+                <img class="image-item" src="slider/slider6.jpg" alt="" />
+            </div>
+        </div>
+    </div>
+    <!-- slider end -->
+    <ul id="resultsContainer"></ul>
+    <!-- product start -->
+    <div id="mainContainer">
+
+        <h1> product for men </h1>
+        <div id="men">
+        </div>
+
+        <h1> product for women </h1>
+        <div id="women">
+        </div>
+
+        <h1> Mix Of Products </h1>
+        <div id="Mix">
+        </div>
+
+    </div>
+
+
+    <!-- footter start -->
+    <footer>
+        <div class="content">
+            <div class="left box">
+                <div class="upper">
+                    <div class="topic">About us</div>
+                    <p>Easy platform to use when you're online shopping for any type of products you’re looking for.
+                        Even if
+                        you’re just browsing, we assure you that you will find something you like in our catalog. Our
+                        clothing store
+                        provides you with over one million products and variations to choose from! You can fitch
+                    </p>
+                </div>
+            </div>
+            <div class="right box">
+                <div class="topic">Subscribe us</div>
+                <form action="#">
+                    <input type="text" placeholder="Enter email address">
+                    <input type="submit" name="" value="Send">
+                    <div class="media-icons">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="bottom">
+            <p>Copyright © 2023 <a href="#">Top Store</a> All rights reserved</p>
+        </div>
+    </footer>
+    <!-- footter end -->
+    <script type="module" src="js/homejs.js"></script>
+    <script>
+        // Place your script logic here, including the localStorage setup and performSearch function
+        // localStorage.setItem('myProducts', JSON.stringify(products));
+
+        function performSearch() {
+            // Get the input value
+            var searchTerm = document.getElementById("searchInput").value.toLowerCase();
+
+            // Retrieve the products from local storage
+            var storedProducts = JSON.parse(localStorage.getItem('myProducts'));
+
+            // Get the container for search results
+            var searchResultsContainer = document.getElementById("searchResults");
+
+            // Clear previous results
+            searchResultsContainer.innerHTML = "";
+
+            // If there's no search term, hide the results container and exit the function
+            if (!searchTerm) {
+                searchResultsContainer.style.display = "none";
+                return;
+            }
+
+            // Loop through each product to find a match
+            for (var i = 0; i < storedProducts.length; i++) {
+                var product = storedProducts[i];
+                var productName = product.name.toLowerCase();
+
+                // Check if the search term is found in the product name
+                if (productName.includes(searchTerm)) {
+                    // If found, create a dropdown item and append it to the container
+                    var resultItem = document.createElement("div");
+                    resultItem.textContent = product.name;
+                    resultItem.classList.add("result-item");
+                    searchResultsContainer.appendChild(resultItem);
+                }
+            }
+
+            // Show the search results container
+            searchResultsContainer.style.display = "block";
+        }
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="css/bootstrap.min.css" />
+  <link rel="stylesheet" href="css/all.min.css" />
+  <!-- header link -->
+  <title>Nader Shop | Add Product</title>
+  <!-- favicon -->
+  <link rel="icon"
+    href="https://yt3.ggpht.com/a/AGF-l78km1YyNXmF0r3-0CycCA0HLA_i6zYn_8NZEg=s900-c-k-c0xffffffff-no-rj-mo"
+    type="image/gif" sizes="16x16">
+  <!-- EXTERNAL LINKS -->
+  <link rel="stylesheet" href="./css/header.css">
+  <script src="https://kit.fontawesome.com/4a3b1f73a2.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css"
+    integrity="sha512-5A8nwdMOWrSz20fDsjczgUidUBR8liPYU+WymTZP1lmY9G6Oc7HlZv156XqnsgNUzTyMefFTcsFH/tnJE/+xBg=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <!-- footter link -->
+  <link rel="stylesheet" href="./css/footer.css">
+  <link rel="stylesheet" href="css/products.css">
+  <link rel="stylesheet" href="./css/homestyle.css">
+</head>
+
+<body>
+  <!-- header start -->
+  <header>
+    <section>
+      <div id="container">
+
+        <div id="shopName"><a href="home.html"> <b>NADER</b>shop </a></div>
+
+        <div class="search">
+          <input type='text' id="searchInput" placeholder="Search Products" oninput="performSearch()" />
+          <div id="searchResults" class="search-results"></div>
+        </div>
+
+        <div id="user">
+          <a href="./Cart.html"> <i class="fa fa-cart-arrow-down" aria-hidden="true"></i></i></a>
+          <a href="../Validation Login and Sign-In/Login/Login.html">
+            <button id="logInButton">Log In</button>
+          </a>
+          <button id="logOutButton">Logout</button>
+
+        </div>
+      </div>
+      <div>
+        <nav>
+          <a href="./Product.html" id="addProductButton">Add Product</a>
+          <a href="./home.html">Home</a>
+          <a href="./Category.html" id="HomeCategory">AddCategory</a>
+          <a href="SeeAllOrders.html" id="AllOrderPage">All Oorders</a>
+          <a href="#">About Us</a>
+        </nav>
+      </div>
+
+    </section>
+  </header>
+  <!-- header end -->
+  <div class="w-75 mx-auto my-4">
+    <form id="productForm">
+      <label for="productName">Product Name:</label>
+      <input type="text" class="form-control my-2" id="productName" required minlength="5" maxlength="25" />
+
+      <label for="productPrice">Product Price:</label>
+      <input type="number" class="form-control my-2" id="productPrice" required min="0.01" />
+
+      <label for="productType">productType:</label>
+      <select id="productType" class="form-select my-2" name="" id="">
+        <option value="men">Men</option>
+        <option value="women">Women</option>
+        <option value="Mix">Mix</option>
+      </select>
+
+
+      <label for="productCategory">Product brand:</label>
+      <input type="text" class="form-control my-2" id="productCategory" required minlength="5" maxlength="25" />
+
+      <label for="productIMG">Product Image:</label>
+      <input type="file" class="form-control my-2" id="productIMG" required />
+
+      <label for="productDesc">Product Description:</label>
+      <textarea type="text" class="form-control my-2" id="productDesc"></textarea>
+
+      <button type="button" id="mainBtn" onclick="validateAndAddProduct()" class="btn btn-primary">Add Product</button>
+    </form>
+  </div>
+  <h1 id="wellcome" class="text-center">See All Product</h1>
+
+  <div class="w-75 mx-auto py-4">
+    <div class="my-3 w-75 mx-auto">
+      <label for="">Search by Name :</label>
+      <input onkeyup="searchProducts(this.value)" type="text" class="form-control my-2" id="searchInput" />
+    </div>
+
+    <table class="table text-center">
+      <thead>
+        <th>Index</th>
+        <th>ProductName</th>
+        <th>ProductPrice</th>
+        <th>ProductType</th>
+        <th>Brand</th>
+        <th>productIMG</th>
+        <th>ProductDesc</th>
+        <th>update</th>
+        <th>delete</th>
+      </thead>
+      <tbody id="tableRow"></tbody>
+    </table>
+  </div>
+  <!-- footter start -->
+  <footer>
+    <div class="content">
+      <div class="left box">
+        <div class="upper">
+          <div class="topic">About us</div>
+          <p>Easy platform to use when you're online shopping for any type of products you’re looking for.
+            Even if
+            you’re just browsing, we assure you that you will find something you like in our catalog. Our
+            clothing store
+            provides you with over one million products and variations to choose from! You can fitch
+          </p>
+        </div>
+      </div>
+      <div class="right box">
+        <div class="topic">Subscribe us</div>
+        <form action="#">
+          <input type="text" placeholder="Enter email address">
+          <input type="submit" name="" value="Send">
+          <div class="media-icons">
+            <a href="#"><i class="fab fa-facebook-f"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fab fa-youtube"></i></a>
+            <a href="#"><i class="fab fa-linkedin-in"></i></a>
+          </div>
+        </form>
+      </div>
+    </div>
+    <div class="bottom">
+      <p>Copyright © 2023 <a href="#">Top Store</a> All rights reserved</p>
+    </div>
+  </footer>
+  <!-- footter end -->
+  <script src="./js/product.js"></script>
+  <script>
+    function validateAndAddProduct() {
+      // Custom validation
+      const nameValidation = validateName();
+      const priceValidation = validatePrice();
+      const categoryValidation = validateCategory();
+      const imageValidation = validateImage();
+
+      // Display alerts for each error
+      if (nameValidation !== true) {
+        alert(nameValidation);
+      } else if (priceValidation !== true) {
+        alert(priceValidation);
+      } else if (categoryValidation !== true) {
+        alert(categoryValidation);
+      } else if (imageValidation !== true) {
+        alert(imageValidation);
+      } else {
+        // If all validations pass, proceed with adding the product
+        addProduct();
+      }
+    }
+
+    function validateName() {
+      // Custom validation for name (required, min length 5, max length 25)
+      const name = document.getElementById('productName').value;
+      if (name.length === 0) {
+        return 'Product Name is required.';
+      } else if (name.length < 5 || name.length > 25) {
+        return 'Product Name must be between 5 and 25 characters.';
+      }
+      return true;
+    }
+
+    function validatePrice() {
+      // Custom validation for price (required, positive number)
+      const price = document.getElementById('productPrice').value;
+      if (price.length === 0) {
+        return 'Product Price is required.';
+      } else if (isNaN(price) || parseFloat(price) <= 0) {
+        return 'Please enter a valid positive price.';
+      }
+      return true;
+    }
+
+    function validateCategory() {
+      // Custom validation for category (required, min length 5, max length 25)
+      const category = document.getElementById('productCategory').value;
+      if (category.length === 0) {
+        return 'Product Category is required.';
+      } else if (category.length < 5 || category.length > 25) {
+        return 'Product Category must be between 5 and 25 characters.';
+      }
+      return true;
+    }
+
+    function validateImage() {
+      // Custom validation for image (required)
+      const image = document.getElementById('productIMG');
+      if (image.files.length === 0) {
+        return 'Product Image is required.';
+      }
+      return true;
+    }
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,47 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 25px;
+  overflow: hidden; /* Hide the horizontal scrollbar */
+  background: white;
+}
+
+.slider-wrapper {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+}
+
+.slider-wrapper .image-list {
+  display: flex;
+  gap: 25px;
+  font-size: 0;
+  animation: scrollAnimation 20s linear infinite;
+  transition: animation-play-state 0.5s;
+}
+
+.slider-wrapper:hover .image-list {
+  animation-play-state: paused;
+}
+
+.slider-wrapper .image-list .image-item {
+  width: 500px;
+  height: 350px;
+  object-fit: cover;
+}
+
+@keyframes scrollAnimation {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}

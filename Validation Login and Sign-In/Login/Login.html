@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<!-- Created By CodingNepal -->
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8" />
+    <title>Login Form</title>
+    <link rel="stylesheet" href="../Login/css/Style.css" />
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Lato&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" 
+    integrity="sha512-5A8nwdMOWrSz20fDsjczgUidUBR8liPYU+WymTZP1lmY9G6Oc7HlZv156XqnsgNUzTyMefFTcsFH/tnJE/+xBg==" 
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="../footerValidation.css">
+    <style>
+      .error-message {
+        color: red;
+        font-size: 14px;
+        margin-top: 5px;
+      }
+      
+    </style>
+  </head>
+  <body>
+    <div class="wrapper" style="margin-bottom: 50px; margin-top: 50px;">
+      <div class="title"><b style="font-size: 30px;">Nader</b>shop</div>
+      <form id="Login-Form">
+        <!-- ====== Email ======= -->
+        <div class="field">
+          <input type="email" required id="login-email" />
+          <label>Email Address</label>
+        </div>
+        <br />
+        <!-- ====== Password ======= -->
+        <div class="field">
+          <input type="password" required id="Login-password" />
+          <label>Password</label>
+        </div>
+        <br />
+        <div id="error" class="error-message"></div>
+        <div class="field">
+          <input type="button" value="Login" id="submitLogin" />
+        </div>
+        <a href="../../home.html"></a>
+        <div class="signup-link">
+          Dont Have Account?<a href="../Register/Register.html"> Sign Up now</a>
+        </div>
+      </form>
+    </div>
+  </body>
+
+  <script type="module">
+    // Import the functions you need from the SDKs you need
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+    import {
+      getDatabase,
+      set,
+      ref,
+      update,
+      get,
+    } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-database.js";
+    import {
+      getAuth,
+      createUserWithEmailAndPassword,
+      signInWithEmailAndPassword,
+      onAuthStateChanged,
+    } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+
+    // Your web app's Firebase configuration
+    const firebaseConfig = {
+      apiKey: "AIzaSyCUIrO-MDXmcWjwA8owfLJx3JXT021uoh4",
+      authDomain: "validation-52b11.firebaseapp.com",
+      databaseURL: "https://validation-52b11-default-rtdb.firebaseio.com",
+      projectId: "validation-52b11",
+      storageBucket: "validation-52b11.appspot.com",
+      messagingSenderId: "743887404432",
+      appId: "1:743887404432:web:57ab90038b600ecab30715",
+    };
+
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+    const database = getDatabase(app);
+    const auth = getAuth();
+
+    const getFormValueById = (id) => {
+      return document.getElementById(id).value.trim();
+    };
+
+    const displayError = (id, message) => {
+      document.getElementById(id).textContent = message;
+    };
+
+    const login = document.getElementById("submitLogin");
+    login.addEventListener("click", (e) => {
+      const Loginemail = getFormValueById("login-email");
+      const LoginPassword = getFormValueById("Login-password");
+
+      signInWithEmailAndPassword(auth, Loginemail, LoginPassword)
+        .then((userCredential) => {
+          const user = userCredential.user;
+          const dt = new Date();
+          update(ref(database, "Users/" + user.uid), {
+            last_login: dt,
+          });
+          const userRoleRef = ref(database, "Users/" + user.uid + "/Role");
+          get(userRoleRef)
+            .then((snapshot) => {
+              const userRole = snapshot.val();
+              // console.log("User Role:", userRole);
+              // Save user role to sessionStorage
+              sessionStorage.setItem("userRole", userRole);
+
+              // Set user email in session storage
+              localStorage.setItem("userEmail", user.email);
+
+              window.location.href = "../../home.html";
+            })
+            .catch((error) => {
+              console.error("Error getting user role:", error);
+            });
+        })
+        .catch((error) => {
+          const errorCode = error.code;
+          const errorMessage = error.message;
+          const errorElement = document.getElementById("error");
+          errorElement.innerText = "Email Or Password Not Valid";
+        });
+    });
+    //========= LogOut ============
+
+    LogOut.addEventListener("click", (e) => {
+      signOut(auth)
+        .then(() => {
+          // Sign-out successful.
+        })
+        .catch((error) => {
+          const errorCode = error.code;
+          const errorMessage = error.message;
+          alert(errorMessage);
+        });
+    });
+  </script>
+</html>

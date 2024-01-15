@@ -1,0 +1,72 @@
+body {
+  margin: 0;
+  font-family: "Lato", sans-serif;
+  overflow: hidden;
+  background-color: #222222;
+}
+
+#containerFooter {
+  width: 100%;
+  background-color: rgb(29, 29, 29);
+  color: white;
+  letter-spacing: 1px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  text-transform: uppercase;
+  font-size: 15px;
+  box-sizing: border-box;
+}
+#containerFooter h3:hover,
+#containerFooter p:hover {
+  color: lightslategray;
+  cursor: pointer;
+}
+#webFooter {
+  padding-top: 30px;
+  font-size: 12px;
+}
+#webFooter input[type="text"] {
+  height: 70px;
+  width: 100%;
+  outline: none;
+  color: #d9d9d9;
+  background: #000;
+  border-radius: 5px;
+  padding-left: 10px;
+  font-size: 17px;
+  border: 2px solid #222222;
+}
+
+#webFooter input[type="submit"] {
+  height: 30px;
+  width: 80%;
+  margin: 40px;
+  font-size: 18px;
+  color: #d9d9d9;
+  background: #eb2f06;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 12px;
+  border: 2px solid #eb2f06;
+}
+
+#webFooter input[type="submit"]:hover {
+  background: none;
+  color: #eb2f06;
+}
+
+.bottom {
+  width: 120%;
+  text-align: center;
+  color: #d9d9d9;
+  padding: 0 30px 10px 0;
+  margin-left: 150%;
+}
+
+.bottom a {
+  color: #eb2f06;
+}
+#webFooter .icon:hover {
+  background: none;
+  color: #eb2f06;
+}

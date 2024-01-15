@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Goat</title>
+    <link rel="stylesheet" href="css/Style.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <style>
+      .error-message {
+        color: red;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="title"><b style="font-size: 30px;">Nader</b>shop</div>
+      <div class="content">
+        <form id="registrationForm">
+          <div class="user-details">
+            <!-- Fname -->
+            <div class="input-box">
+              <span class="details">First Name</span>
+              <input type="text" placeholder="First Name" required id="FName" />
+              <div class="error-message" id="firstNameError"></div>
+            </div>
+
+            <!-- Lname -->
+            <div class="input-box">
+              <span class="details">Last Name</span>
+              <input type="text" placeholder="Last Name" required id="LName" />
+              <div class="error-message" id="lastNameError"></div>
+            </div>
+
+            <!-- Email -->
+            <div class="input-box">
+              <span class="details">Email</span>
+              <input
+                type="email"
+                placeholder="Enter your email"
+                required
+                id="Email"
+              />
+              <div class="error-message" id="emailError"></div>
+            </div>
+
+            <!-- Phone Number -->
+            <div class="input-box">
+              <span class="details">Phone Number</span>
+              <input
+                type="text"
+                placeholder="Enter your number"
+                required
+                id="Phone"
+              />
+              <div class="error-message" id="phoneError"></div>
+            </div>
+
+            <!-- Password -->
+            <div class="input-box">
+              <span class="details">Password</span>
+              <input
+                type="password"
+                placeholder="Enter your password"
+                required
+                id="Password"
+              />
+              <div class="error-message" id="passwordError"></div>
+            </div>
+
+            <!-- Confirm Password -->
+            <div class="input-box">
+              <span class="details">Confirm Password</span>
+              <input
+                type="password"
+                placeholder="Confirm your password"
+                required
+                id="ConfirmPass"
+              />
+              <div class="error-message" id="confirmPasswordError"></div>
+            </div>
+
+            <!-- Role Selection -->
+            <div class="input-box">
+              <span class="details">Role</span>
+              <select id="UserRole">
+                <option value="Admin">Admin</option>
+                <option value="Customer">Customer</option>
+              </select>
+            </div>
+          </div>
+          <p id="error-message" style="color: red"></p>
+
+          <!-- Role Message -->
+          <div id="roleMessage"></div>
+
+          <!-- Submit -->
+          <div class="button">
+            <input type="submit" value="Register" id="submitButton" />
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <script type="module">
+      import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+      import {
+        getDatabase,
+        set,
+        ref,
+      } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-database.js";
+      import {
+        getAuth,
+        createUserWithEmailAndPassword,
+      } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+
+      const firebaseConfig = {
+        apiKey: "AIzaSyCUIrO-MDXmcWjwA8owfLJx3JXT021uoh4",
+        authDomain: "validation-52b11.firebaseapp.com",
+        databaseURL: "https://validation-52b11-default-rtdb.firebaseio.com",
+        projectId: "validation-52b11",
+        storageBucket: "validation-52b11.appspot.com",
+        messagingSenderId: "743887404432",
+        appId: "1:743887404432:web:57ab90038b600ecab30715",
+      };
+
+      const app = initializeApp(firebaseConfig);
+      const database = getDatabase(app);
+      const auth = getAuth();
+
+      const getFormValueById = (id) => {
+        return document.getElementById(id).value.trim();
+      };
+
+      const displayError = (id, message) => {
+        document.getElementById(id).textContent = message;
+      };
+
+      const clearErrors = () => {
+        displayError("error-message", "");
+        displayError("firstNameError", "");
+        displayError("lastNameError", "");
+        displayError("emailError", "");
+        displayError("phoneError", "");
+        displayError("passwordError", "");
+        displayError("confirmPasswordError", "");
+      };
+
+      const emailRegex =
+        /^[^\s@]{1,15}@([a-zA-Z0-9.-]+\.)?(gmail\.com|yahoo\.com)$/;
+      const phoneRegex = /^01[0125]\d{8}$/;
+
+      const submitButton = document.getElementById("submitButton");
+      const roleSelect = document.getElementById("UserRole");
+      const roleMessage = document.getElementById("roleMessage");
+
+      const defaultRole = "Customer";
+      roleSelect.value = defaultRole;
+
+      const isNameValid = (name) => {
+  return /^[a-zA-Z]+$/.test(name) && name.length >= 2;
+};
+
+      submitButton.addEventListener("click", (e) => {
+        e.preventDefault();
+        clearErrors();
+
+        const firstName = getFormValueById("FName");
+        const lastName = getFormValueById("LName");
+        const email = getFormValueById("Email");
+        const phone = getFormValueById("Phone");
+        const password = getFormValueById("Password");
+        const confirmPassword = getFormValueById("ConfirmPass");
+
+        if (!isNameValid(firstName)) {
+    displayError("firstNameError", "Must be 2 or More Characters and Alphabetic");
+    return;
+  }
+
+  if (!isNameValid(lastName)) {
+    displayError("lastNameError", "Must be 2 or More Characters and Alphabetic");
+    return;
+  }
+
+        if (!emailRegex.test(email)) {
+          displayError("emailError", "Invalid Email Format (Gmail or Yahoo)");
+          return;
+        }
+
+        if (!phoneRegex.test(phone)) {
+          displayError(
+            "phoneError",
+            "Phone must be 11 digits and begin with (010, 011, 012, 015)"
+          );
+          return;
+        }
+
+        if (password.length < 6) {
+          displayError(
+            "passwordError",
+            "Password must be 6 characters or more"
+          );
+          return;
+        }
+
+        if (password !== confirmPassword) {
+          displayError("confirmPasswordError", "Passwords dosen't match");
+          return;
+        }
+
+        const userRole = roleSelect.value || defaultRole;
+
+        if (userRole === "Admin") {
+          displayError(
+            "roleMessage",
+            "Please Continue Register and Call 01022202732 To Make Your Account Admin."
+          );
+          return;
+        }
+
+        function ReloadHomePage() {
+          window.location.href = "../../home.html";
+        }
+
+        createUserWithEmailAndPassword(auth, email, password)
+          .then((userCredential) => {
+            debugger;
+            const user = userCredential.user;
+
+            set(ref(database, "Users/" + user.uid), {
+              FullName: { firstName, lastName },
+              Email: email,
+              Phone: phone,
+              Password: password,
+              ConfirmPass: confirmPassword,
+              Role: userRole,
+            }).then(() => {
+              console.log("Data successfully written to the database");
+              // Redirect to home page after a short delay
+              setTimeout(ReloadHomePage, 1500);
+              console.log("Data successfully written to the database");
+            });
+          })
+          .catch((error) => {
+            const errorCode = error.code;
+            const errorMessage = error.message;
+
+            switch (errorCode) {
+              case "auth/weak-password":
+                displayError("passwordError", errorMessage);
+                break;
+              case "auth/email-already-in-use":
+                displayError("emailError", errorMessage);
+                break;
+              case "auth/invalid-email":
+                displayError("emailError", errorMessage);
+                break;
+              default:
+                displayError("error-message", errorMessage);
+            }
+          });
+      });
+    </script>
+  </body>
+</html>

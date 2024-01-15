@@ -1,0 +1,127 @@
+<html>
+
+<head>
+  <link rel="stylesheet" href="css/bootstrap.min.css" />
+  <link rel="stylesheet" href="css/all.min.css" />
+  <!-- <link rel="stylesheet" href="css/style.css" /> -->
+
+  <!-- header link -->
+  <!-- favicon -->
+  <link rel="icon"
+    href="https://yt3.ggpht.com/a/AGF-l78km1YyNXmF0r3-0CycCA0HLA_i6zYn_8NZEg=s900-c-k-c0xffffffff-no-rj-mo"
+    type="image/gif" sizes="16x16">
+  <!-- EXTERNAL LINKS -->
+  <title>Nader Shop | Add Category</title>
+  <link rel="stylesheet" href="./css/header.css">
+  <link rel="stylesheet" href="./css/homestyle.css">
+  <script src="https://kit.fontawesome.com/4a3b1f73a2.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css"
+    integrity="sha512-5A8nwdMOWrSz20fDsjczgUidUBR8liPYU+WymTZP1lmY9G6Oc7HlZv156XqnsgNUzTyMefFTcsFH/tnJE/+xBg=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <!-- footter link -->
+  <link rel="stylesheet" href="css/footer.css">
+  <link rel="stylesheet" href="css/products.css">
+</head>
+
+<body>
+  <!-- header start -->
+  <header>
+    <section>
+      <div id="container">
+
+        <div id="shopName"><a href="home.html"> <b>NADER</b>shop </a></div>
+
+        <div class="search">
+          <input type='text' id="searchInput" placeholder="Search Products" oninput="performSearch()" />
+          <div id="searchResults" class="search-results"></div>
+        </div>
+
+        <div id="user">
+          <a href="./Wishlist.html" target="_blank"> <i class="fa fa-heart" aria-hidden="true"></i></a>
+          <a href="./Cart.html" target="_blank"> <i class="fa fa-cart-arrow-down" aria-hidden="true"></i></i></a>
+
+          <a href="../Validation Login and Sign-In/Login/Login.html" target="_blank">
+            <button id="logInButton">Log In</button>
+          </a>
+          <button id="logOutButton">Logout</button>
+
+        </div>
+      </div>
+      <div>
+        <nav>
+          <a href="./Product.html" id="addProductButton">Add Product</a>
+          <a href="./home.html">Home</a>
+          <a href="./Category.html" id="HomeCategory">AddCategory</a>
+          <a href="SeeAllOrders.html" id="AllOrderPage">All Oorders</a>
+          <a href="#">About Us</a>
+        </nav>
+      </div>
+
+    </section>
+  </header>
+  <!-- header end -->
+
+  <div class="w-75 mx-auto my-4" id="fform">
+    <label for="CategoryName">Category Name :</label>
+    <input type="text" class="form-control my-2" id="CategoryName" />
+    <label for="CategoryDesc">Category Desc :</label>
+    <textarea type="text" class="form-control my-2" id="CategoryDesc"></textarea>
+
+    <button id="mainBtn" onclick="addProduct()" class="btn btn-primary">add Category</button>
+  </div>
+  <div class="w-75 mx-auto py-4">
+    <h1 id="wellcome" class="text-center">See All Product</h1>
+    <div class="my-3 w-75 mx-auto">
+      <label for="">Search by Name :</label>
+      <input onkeyup="searchProducts(this.value)" type="text" class="form-control my-2" id="searchInput" />
+    </div>
+
+    <table class="table text-center">
+      <thead>
+        <th>Index</th>
+        <th>CategoryName</th>
+        <th>CategoryDesc</th>
+        <th>update</th>
+        <th>delete</th>
+      </thead>
+      <tbody id="tableRow"></tbody>
+    </table>
+  </div>
+  <!-- footter start -->
+  <footer>
+    <div class="content">
+      <div class="left box">
+        <div class="upper">
+          <div class="topic">About us</div>
+          <p>Easy platform to use when you're online shopping for any type of products you’re looking for.
+            Even if
+            you’re just browsing, we assure you that you will find something you like in our catalog. Our
+            clothing store
+            provides you with over one million products and variations to choose from! You can fitch
+          </p>
+        </div>
+      </div>
+      <div class="right box">
+        <div class="topic">Subscribe us</div>
+        <form action="#">
+          <input type="text" placeholder="Enter email address">
+          <input type="submit" name="" value="Send">
+          <div class="media-icons">
+            <a href="#"><i class="fab fa-facebook-f"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fab fa-youtube"></i></a>
+            <a href="#"><i class="fab fa-linkedin-in"></i></a>
+          </div>
+        </form>
+      </div>
+    </div>
+    <div class="bottom">
+      <p>Copyright © 2023 <a href="#">Top Store</a> All rights reserved</p>
+    </div>
+  </footer>
+  <!-- footter end -->
+  <script src="./js/Category.js"></script>
+</body>
+
+</html>
